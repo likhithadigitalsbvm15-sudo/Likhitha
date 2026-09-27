@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Browser</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f8;
+    color:#222;
+}
+
+body.dark{
+    background:#121212;
+    color:#eee;
+}
+
+/* TOP BAR */
+
+.topbar{
+    background:#202124;
+    color:white;
+    padding:8px 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* TABS */
+
+.tabs{
+    background:#202124;
+    display:flex;
+    align-items:center;
+    padding:0 10px;
+    gap:5px;
+}
+
+.tab{
+    background:#303134;
+    color:white;
+    padding:10px 14px;
+    border-radius:10px 10px 0 0;
+    min-width:150px;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:#f4f6f8;
+    color:#222;
+}
+
+body.dark .tab.active{
+    background:#181818;
+    color:white;
+}
+
+.tab-close{
+    color:#e53935;
+    float:right;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+.new-tab{
+    background:#303134;
+    color:white;
+    border:none;
+    font-size:20px;
+    cursor:pointer;
+    padding:7px 12px;
+}
+
+/* NAVIGATION */
+
+.navigation{
+    background:#f4f6f8;
+    padding:8px 12px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border-bottom:1px solid #ddd;
+}
+
+body.dark .navigation{
+    background:#181818;
+    border-color:#333;
+}
+
+.nav-btn{
+    border:none;
+    background:transparent;
+    font-size:20px;
+    padding:7px 10px;
+    cursor:pointer;
+    border-radius:50%;
+}
+
+.nav-btn:hover{
+    background:#ddd;
+}
+
+body.dark .nav-btn:hover{
+    background:#333;
+}
+
+/* ADDRESS BAR */
+
+.address-box{
+    flex:1;
+    display:flex;
+    align-items:center;
+    background:white;
+    border:1px solid #ccc;
+    border-radius:25px;
+    padding:3px 8px;
+}
+
+body.dark .address-box{
+    background:#252525;
+    border-color:#444;
+}
+
+.security-icon{
+    padding:0 7px;
+}
+
+.address-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    padding:9px;
+    font-size:15px;
+}
+
+body.dark .address-box input{
+    color:white;
+}
+
+/* SEARCH ENGINE */
+
+.engine{
+    border:none;
+    background:transparent;
+    outline:none;
+}
+
+/* RIGHT BUTTONS */
+
+.right-buttons{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.top-button{
+    border:none;
+    background:transparent;
+    color:inherit;
+    font-size:17px;
+    padding:8px;
+    cursor:pointer;
+    border-radius:50%;
+}
+
+.top-button:hover{
+    background:#ddd;
+}
+
+body.dark .top-button:hover{
+    background:#333;
+}
+
+/* PRIVATE STATUS */
+
+.private-status{
+    text-align:center;
+    padding:7px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* HOME */
+
+.home{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 15px;
+}
+
+/* WELCOME */
+
+.welcome{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.welcome h1{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#666;
+    font-size:18px;
+}
+
+body.dark .welcome p{
+    color:#aaa;
+}
+
+/* QUICK SEARCH */
+
+.quick-search{
+    max-width:650px;
+    margin:25px auto;
+    display:flex;
+    background:white;
+    border:1px solid #ddd;
+    border-radius:30px;
+    padding:5px;
+}
+
+body.dark .quick-search{
+    background:#252525;
+    border-color:#444;
+}
+
+.quick-search input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:13px 16px;
+    font-size:16px;
+    background:transparent;
+}
+
+body.dark .quick-search input{
+    color:white;
+}
+
+.search-button{
+    border:none;
+    background:#1976d2;
+    color:white;
+    border-radius:25px;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+/* SECTION */
+
+.section{
+    margin-top:30px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* WEBSITE CARDS */
+
+.quick-sites{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:14px;
+}
+
+.site-card{
+    background:white;
+    padding:20px 10px;
+    border-radius:14px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    transition:.2s;
+}
+
+.site-card:hover{
+    transform:translateY(-3px);
+}
+
+body.dark .site-card{
+    background:#1e1e1e;
+}
+
+.site-icon{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.site-card button{
+    margin-top:8px;
+}
+
+/* FEATURE CARDS */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.feature{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    text-align:center;
+}
+
+body.dark .feature{
+    background:#1e1e1e;
+}
+
+.feature-icon{
+    font-size:32px;
+}
+
+/* PANELS */
+
+.panel{
+    display:none;
+    max-width:800px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+}
+
+body.dark .panel{
+    background:#1e1e1e;
+}
+
+.panel h2{
+    margin-top:0;
+}
+
+.list-item{
+    padding:10px;
+    background:#f1f1f1;
+    margin:7px 0;
+    border-radius:7px;
+}
+
+body.dark .list-item{
+    background:#292929;
+}
+
+button{
+    border:none;
+    border-radius:7px;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.blue{
+    background:#1976d2;
+    color:white;
+}
+
+.red{
+    background:#e53935;
+    color:white;
+}
+
+.green{
+    background:#2e7d32;
+    color:white;
+}
+
+/* SECURITY */
+
+.security{
+    text-align:center;
+    padding:5px;
+    font-size:13px;
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+body.dark .security{
+    background:#172417;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    color:#777;
+    padding:35px;
+}
+
+@media(max-width:700px){
+
+    .logo{
+        display:none;
+    }
+
+    .right-buttons{
+        display:none;
+    }
+
+    .navigation{
+        padding:6px;
+    }
+
+    .welcome h1{
+        font-size:28px;
+    }
+
+    .tab{
+        min-width:120px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+
+<div class="topbar">
+
+    <div class="logo">
+        🌐 My Browser
+    </div>
+
+    <div style="flex:1"></div>
+
+    <button class="top-button" onclick="togglePrivateMode()">
+        🔐
+    </button>
+
+    <button class="top-button" onclick="toggleDarkMode()">
+        🌙
+    </button>
+
+    <button class="top-button" onclick="toggleSettings()">
+        ⚙️
+    </button>
+
+</div>
+
+
+<!-- TABS -->
+
+<div class="tabs">
+
+    <div class="tab active" onclick="renameTab()">
+
+        <span id="tabName">
+            🌐 New Tab
+        </span>
+
+        <span
+            class="tab-close"
+            onclick="closeTab(event)"
+        >
+            ×
+        </span>
+
+    </div>
+
+    <button
+        class="new-tab"
+        onclick="newTab()"
+    >
+        +
+    </button>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="navigation">
+
+    <button
+        class="nav-btn"
+        onclick="history.back()"
+        title="Back"
+    >
+        ⬅
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="history.forward()"
+        title="Forward"
+    >
+        ➡
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="location.reload()"
+        title="Refresh"
+    >
+        🔄
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="goHome()"
+        title="Home"
+    >
+        🏠
+    </button>
+
+
+    <!-- ADDRESS BAR -->
+
+    <div class="address-box">
+
+        <span
+            class="security-icon"
+            id="securityIcon"
+        >
+            🔎
+        </span>
+
+        <input
+            type="text"
+            id="addressInput"
+            placeholder="Search or enter website address"
+        >
+
+        <select
+            class="engine"
+            id="engine"
+        >
+
+            <option value="google">Google</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+
+        </select>
+
+    </div>
+
+
+    <button
+        class="nav-btn"
+        onclick="bookmarkPage()"
+        title="Bookmark"
+    >
+        ⭐
+    </button>
+
+</div>
+
+
+<!-- SECURITY -->
+
+<div
+    class="security"
+    id="securityStatus"
+>
+    🔎 Ready to search
+</div>
+
+
+<!-- PRIVATE -->
+
+<div
+    class="private-status"
+    id="privateStatus"
+>
+</div>
+
+
+<!-- HOME -->
+
+<div class="home">
+
+    <div class="welcome">
+
+        <h1>
+            🌐 Welcome to My Browser
+        </h1>
+
+        <p>
+            Fast • Simple • Personal
+        </p>
+
+        <div
+            class="quick-search"
+        >
+
+            <input
+                type="text"
+                id="homeSearch"
+                placeholder="Search the web..."
+            >
+
+            <button
+                class="search-button"
+                onclick="homeSearch()"
+            >
+                🔎 Search
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK WEBSITES -->
+
+    <div class="section">
+
+        <h2>
+            🌐 Quick Websites
+        </h2>
+
+        <div class="quick-sites">
+
+            <div
+                class="site-card"
+                onclick="openSite('https://www.google.com')"
+            >
+
+                <div class="site-icon">
+                    🔎
+                </div>
+
+                <b>Google</b>
+
+            </div>
+
+
+            <div
+                class="site-card"
+                onclick="openSite('https://www.youtube.com')"
+            >
+
+                <div class="site-icon">
+                    ▶️
+                </div>
+
+                <b>YouTube</b>
+
+            </div>
+
+
+            <div
+                class="site-card"
+                onclick="openSite('https://www.facebook.com')"
+            >
+
+                <div class="site-icon">
+                    📘
+                </div>
+
+                <b>Facebook</b>
+
+            </div>
+
+
+            <div
+                class="site-card"
+                onclick="openSite('https://www.instagram.com')"
+            >
+
+                <div class="site-icon">
+                    📸
+                </div>
+
+                <b>Instagram</b>
+
+            </div>
+
+
+            <div
+                class="site-card"
+                onclick="openSite('https://web.whatsapp.com')"
+            >
+
+                <div class="site-icon">
+                    💬
+                </div>
+
+                <b>WhatsApp</b>
+
+            </div>
+
+
+            <div
+                class="site-card"
+                onclick="openSite('https://news.google.com')"
+            >
+
+                <div class="site-icon">
+                    📰
+                </div>
+
+                <b>News</b>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+        <button
+            class="blue"
+            onclick="addQuickSite()"
+        >
+            ➕ Add Website
+        </button>
+
+
+        <div
+            id="customSites"
+            class="quick-sites"
+        ></div>
+
+    </div>
+
+
+    <!-- BROWSER FEATURES -->
+
+    <div class="section">
+
+        <h2>
+            ✨ Browser Features
+        </h2>
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⭐
+                </div>
+
+                <b>Bookmarks</b>
+
+                <p>
+                    Save your favorite websites.
+                </p>
+
+                <button
+                    class="blue"
+                    onclick="showBookmarksPanel()"
+                >
+                    Open
+                </button>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🕘
+                </div>
+
+                <b>History</b>
+
+                <p>
+                    View recent searches.
+                </p>
+
+                <button
+                    class="blue"
+                    onclick="showHistoryPanel()"
+                >
+                    Open
+                </button>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📥
+                </div>
+
+                <b>Downloads</b>
+
+                <p>
+                    Manage saved downloads.
+                </p>
+
+                <button
+                    class="blue"
+                    onclick="showDownloadsPanel()"
+                >
+                    Open
+                </button>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <b>Private Mode</b>
+
+                <p>
+                    Don't save new searches.
+                </p>
+
+                <button
+                    class="blue"
+                    onclick="togglePrivateMode()"
+                >
+                    Enable
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY PANEL -->
+
+    <div
+        class="panel"
+        id="historyPanel"
+    >
+
+        <h2>
+            🕘 Search History
+        </h2>
+
+        <div id="historyList"></div>
+
+        <button
+            class="red"
+            onclick="clearHistory()"
+        >
+            🗑 Clear History
+        </button>
+
+    </div>
+
+
+    <!-- BOOKMARK PANEL -->
+
+    <div
+        class="panel"
+        id="bookmarkPanel"
+    >
+
+        <h2>
+            ⭐ Bookmarks
+        </h2>
+
+        <div id="bookmarkList"></div>
+
+        <button
+            class="red"
+            onclick="clearBookmarks()"
+        >
+            🗑 Clear All Bookmarks
+        </button>
+
+    </div>
+
+
+    <!-- DOWNLOAD PANEL -->
+
+    <div
+        class="panel"
+        id="downloadsPanel"
+    >
+
+        <h2>
+            📥 Downloads
+        </h2>
+
+        <button
+            class="blue"
+            onclick="addDownload()"
+        >
+            ➕ Add Download
+        </button>
+
+        <div id="downloadsList"></div>
+
+        <button
+            class="red"
+            onclick="clearDownloads()"
+        >
+            🗑 Clear Downloads
+        </button>
+
+    </div>
+
+
+    <!-- SETTINGS -->
+
+    <div
+        class="panel"
+        id="settingsPanel"
+    >
+
+        <h2>
+            ⚙️ Browser Settings
+        </h2>
+
+        <p>
+            Default Search Engine
+        </p>
+
+        <select
+            id="settingsEngine"
+            onchange="changeEngine()"
+        >
+
+            <option value="google">
+                Google
+            </option>
+
+            <option value="bing">
+                Bing
+            </option>
+
+            <option value="duckduckgo">
+                DuckDuckGo
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button
+            class="blue"
+            onclick="toggleDarkMode()"
+        >
+            🌙 Dark / Light Mode
+        </button>
+
+        <button
+            class="red"
+            onclick="clearHistory()"
+        >
+            🗑 Clear History
+        </button>
+
+        <button
+            class="red"
+            onclick="clearBookmarks()"
+        >
+            🗑 Clear Bookmarks
+        </button>
+
+        <br><br>
+
+        <button
+            onclick="toggleSettings()"
+        >
+            ❌ Close Settings
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    🌐 My Browser © 2026
+
+</footer>
+
+
+<script>
+
+/* SEARCH */
+
+function go(){
+
+    let input =
+        document.getElementById(
+            "addressInput"
+        ).value.trim();
+
+    if(!input){
+        return;
+    }
+
+    updateSecurity(input);
+
+    let url = "";
+
+    if(
+        input.startsWith("http://") ||
+        input.startsWith("https://")
+    ){
+
+        url = input;
+
+    }
+
+    else if(
+        input.includes(".com") ||
+        input.includes(".in") ||
+        input.includes(".org") ||
+        input.includes(".net")
+    ){
+
+        url = "https://" + input;
+
+    }
+
+    else{
+
+        let engine =
+            document.getElementById(
+                "engine"
+            ).value;
+
+        if(engine === "google"){
+
+            url =
+                "https://www.google.com/search?q="
+                + encodeURIComponent(input);
+
+        }
+
+        if(engine === "bing"){
+
+            url =
+                "https://www.bing.com/search?q="
+                + encodeURIComponent(input);
+
+        }
+
+        if(engine === "duckduckgo"){
+
+            url =
+                "https://duckduckgo.com/?q="
+                + encodeURIComponent(input);
+
+        }
+
+        if(!privateMode){
+
+            saveHistory(input);
+
+        }
+
+    }
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* HOME SEARCH */
+
+function homeSearch(){
+
+    let value =
+        document.getElementById(
+            "homeSearch"
+        ).value.trim();
+
+    if(!value){
+        return;
+    }
+
+    document.getElementById(
+        "addressInput"
+    ).value = value;
+
+    go();
+
+}
+
+
+/* ENTER KEY */
+
+document.getElementById(
+    "addressInput"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            go();
+
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "homeSearch"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            homeSearch();
+
+        }
+
+    }
+);
+
+
+/* SECURITY */
+
+function updateSecurity(input){
+
+    let status =
+        document.getElementById(
+            "securityStatus"
+        );
+
+    let icon =
+        document.getElementById(
+            "securityIcon"
+        );
+
+    if(input.startsWith("https://")){
+
+        icon.innerText = "🔒";
+
+        status.innerText =
+            "🔒 Secure Connection — HTTPS";
+
+    }
+
+    else if(input.startsWith("http://")){
+
+        icon.innerText = "⚠️";
+
+        status.innerText =
+            "⚠️ Not Secure — HTTP";
+
+    }
+
+    else if(
+        input.includes(".com") ||
+        input.includes(".in") ||
+        input.includes(".org") ||
+        input.includes(".net")
+    ){
+
+        icon.innerText = "🔒";
+
+        status.innerText =
+            "🌐 Website — HTTPS will be used";
+
+    }
+
+    else{
+
+        icon.innerText = "🔎";
+
+        status.innerText =
+            "🔎 Search — Selected search engine";
+
+    }
+
+}
+
+
+/* OPEN WEBSITE */
+
+function openSite(url){
+
+    updateSecurity(url);
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* HOME */
+
+function goHome(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    document.getElementById(
+        "addressInput"
+    ).value = "";
+
+}
+
+
+/* NEW TAB */
+
+function newTab(){
+
+    window.open(
+        "index.html",
+        "_blank"
+    );
+
+}
+
+
+/* RENAME TAB */
+
+function renameTab(){
+
+    let oldName =
+        localStorage.getItem(
+            "myBrowserTabName"
+        ) || "New Tab";
+
+    let name =
+        prompt(
+            "Tab name enter cheyyandi:",
+            oldName
+        );
+
+    if(name){
+
+        document.getElementById(
+            "tabName"
+        ).innerText = name;
+
+        localStorage.setItem(
+            "myBrowserTabName",
+            name
+        );
+
+    }
+
+}
+
+
+/* SHOW TAB */
+
+function showTabName(){
+
+    let name =
+        localStorage.getItem(
+            "myBrowserTabName"
+        );
+
+    if(name){
+
+        document.getElementById(
+            "tabName"
+        ).innerText = name;
+
+    }
+
+}
+
+
+/* CLOSE TAB */
+
+function closeTab(event){
+
+    event.stopPropagation();
+
+    if(confirm("Close this tab?")){
+
+        window.close();
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "about:blank";
+
+            },
+            300
+        );
+
+    }
+
+}
+
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle(
+        "dark"
+    );
+
+    let dark =
+        document.body.classList.contains(
+            "dark"
+        );
+
+    localStorage.setItem(
+        "myBrowserDarkMode",
+        dark
+    );
+
+}
+
+
+/* LOAD DARK */
+
+function loadDarkMode(){
+
+    if(
+        localStorage.getItem(
+            "myBrowserDarkMode"
+        ) === "true"
+    ){
+
+        document.body.classList.add(
+            "dark"
+        );
+
+    }
+
+}
+
+
+/* PRIVATE MODE */
+
+let privateMode = false;
+
+function togglePrivateMode(){
+
+    privateMode =
+        !privateMode;
+
+    let status =
+        document.getElementById(
+            "privateStatus"
+        );
+
+    if(privateMode){
+
+        status.innerText =
+            "🔐 Private Mode ON — New searches will NOT be saved to History.";
+
+    }
+
+    else{
+
+        status.innerText = "";
+
+    }
+
+}
+
+
+/* HISTORY */
+
+function saveHistory(text){
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserHistory"
+            )
+        ) || [];
+
+    history =
+        history.filter(
+            item => item !== text
+        );
+
+    history.unshift(text);
+
+    history =
+        history.slice(
+            0,
+            10
+        );
+
+    localStorage.setItem(
+        "myBrowserHistory",
+        JSON.stringify(history)
+    );
+
+    showHistory();
+
+}
+
+
+function showHistory(){
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserHistory"
+            )
+        ) || [];
+
+    let box =
+        document.getElementById(
+            "historyList"
+        );
+
+    box.innerHTML = "";
+
+    if(history.length === 0){
+
+        box.innerHTML =
+            "<p>No search history yet.</p>";
+
+        return;
+
+    }
+
+    history.forEach(
+        function(item,index){
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "list-item";
+
+            div.innerHTML =
+                "🔎 " +
+                item +
+                ' <button class="blue" onclick="searchHistory(' +
+                index +
+                ')">Open</button>';
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+function searchHistory(index){
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserHistory"
+            )
+        ) || [];
+
+    if(history[index]){
+
+        document.getElementById(
+            "addressInput"
+        ).value =
+            history[index];
+
+        go();
+
+    }
+
+}
+
+
+function showHistoryPanel(){
+
+    hidePanels();
+
+    document.getElementById(
+        "historyPanel"
+    ).style.display =
+        "block";
+
+    showHistory();
+
+}
+
+
+function clearHistory(){
+
+    if(confirm(
+        "Clear all search history?"
+    )){
+
+        localStorage.removeItem(
+            "myBrowserHistory"
+        );
+
+        showHistory();
+
+    }
+
+}
+
+
+/* BOOKMARKS */
+
+function bookmarkPage(){
+
+    let url =
+        document.getElementById(
+            "addressInput"
+        ).value.trim();
+
+    if(!url){
+
+        alert(
+            "Enter a website address first!"
+        );
+
+        return;
+
+    }
+
+    let bookmarks =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserBookmarks"
+            )
+        ) || [];
+
+    if(
+        !bookmarks.includes(url)
+    ){
+
+        bookmarks.unshift(url);
+
+    }
+
+    localStorage.setItem(
+        "myBrowserBookmarks",
+        JSON.stringify(bookmarks)
+    );
+
+    showBookmarks();
+
+    alert(
+        "⭐ Bookmark saved!"
+    );
+
+}
+
+
+function showBookmarks(){
+
+    let bookmarks =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserBookmarks"
+            )
+        ) || [];
+
+    let box =
+        document.getElementById(
+            "bookmarkList"
+        );
+
+    box.innerHTML = "";
+
+    if(bookmarks.length === 0){
+
+        box.innerHTML =
+            "<p>No bookmarks yet.</p>";
+
+        return;
+
+    }
+
+    bookmarks.forEach(
+        function(item,index){
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "list-item";
+
+            div.innerHTML =
+                "⭐ " +
+                item +
+                ' <button class="blue" onclick="openSite(' +
+                JSON.stringify(item) +
+                ')">Open</button>' +
+                ' <button class="red" onclick="deleteBookmark(' +
+                index +
+                ')">Delete</button>';
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+function showBookmarksPanel(){
+
+    hidePanels();
+
+    document.getElementById(
+        "bookmarkPanel"
+    ).style.display =
+        "block";
+
+    showBookmarks();
+
+}
+
+
+function deleteBookmark(index){
+
+    let bookmarks =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserBookmarks"
+            )
+        ) || [];
+
+    bookmarks.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "myBrowserBookmarks",
+        JSON.stringify(bookmarks)
+    );
+
+    showBookmarks();
+
+}
+
+
+function clearBookmarks(){
+
+    if(confirm(
+        "Clear all bookmarks?"
+    )){
+
+        localStorage.removeItem(
+            "myBrowserBookmarks"
+        );
+
+        showBookmarks();
+
+    }
+
+}
+
+
+/* SEARCH ENGINE */
+
+function loadEngine(){
+
+    let engine =
+        localStorage.getItem(
+            "myBrowserEngine"
+        ) || "google";
+
+    document.getElementById(
+        "engine"
+    ).value =
+        engine;
+
+    document.getElementById(
+        "settingsEngine"
+    ).value =
+        engine;
+
+}
+
+
+function changeEngine(){
+
+    let engine =
+        document.getElementById(
+            "settingsEngine"
+        ).value;
+
+    document.getElementById(
+        "engine"
+    ).value =
+        engine;
+
+    localStorage.setItem(
+        "myBrowserEngine",
+        engine
+    );
+
+}
+
+
+/* SETTINGS */
+
+function toggleSettings(){
+
+    let panel =
+        document.getElementById(
+            "settingsPanel"
+        );
+
+    if(panel.style.display === "block"){
+
+        panel.style.display = "none";
+
+    } else {
+
+        hidePanels();
+
+        panel.style.display = "block";
+
+    }
+
+}
+
+/* PANELS */
+
+function hidePanels(){
+
+    let panels =
+        document.querySelectorAll(
+            ".panel"
+        );
+
+    panels.forEach(
+        function(panel){
+
+            panel.style.display =
+                "none";
+
+        }
+    );
+
+}
+
+
+/* CUSTOM WEBSITES */
+
+function addQuickSite(){
+
+    let name =
+        prompt(
+            "Website name:"
+        );
+
+    if(!name){
+        return;
+    }
+
+    let icon =
+        prompt(
+            "Website icon emoji:",
+            "🌐"
+        );
+
+    if(!icon){
+        icon = "🌐";
+    }
+
+    let url =
+        prompt(
+            "Website URL:"
+        );
+
+    if(!url){
+        return;
+    }
+
+    if(
+        !url.startsWith(
+            "http://"
+        ) &&
+        !url.startsWith(
+            "https://"
+        )
+    ){
+
+        url =
+            "https://" +
+            url;
+
+    }
+
+    let sites =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserQuickSites"
+            )
+        ) || [];
+
+    sites.push({
+        name:name,
+        icon:icon,
+        url:url
+    });
+
+    localStorage.setItem(
+        "myBrowserQuickSites",
+        JSON.stringify(sites)
+    );
+
+    showQuickSites();
+
+}
+
+
+function showQuickSites(){
+
+    let sites =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserQuickSites"
+            )
+        ) || [];
+
+    let box =
+        document.getElementById(
+            "customSites"
+        );
+
+    box.innerHTML = "";
+
+    sites.forEach(
+        function(site,index){
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "site-card";
+
+            div.innerHTML =
+                '<div class="site-icon">' +
+                site.icon +
+                '</div>' +
+                '<b>' +
+                site.name +
+                '</b><br>' +
+                '<button class="blue" onclick="openSite(' +
+                JSON.stringify(site.url) +
+                ')">Open</button>' +
+                '<button class="red" onclick="deleteQuickSite(' +
+                index +
+                ')">Delete</button>';
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+function deleteQuickSite(index){
+
+    let sites =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserQuickSites"
+            )
+        ) || [];
+
+    sites.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "myBrowserQuickSites",
+        JSON.stringify(sites)
+    );
+
+    showQuickSites();
+
+}
+
+
+/* DOWNLOADS */
+
+function addDownload(){
+
+    let name =
+        prompt(
+            "File name:"
+        );
+
+    if(!name){
+        return;
+    }
+
+    let url =
+        prompt(
+            "Download URL:"
+        );
+
+    if(!url){
+        return;
+    }
+
+    let downloads =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserDownloads"
+            )
+        ) || [];
+
+    downloads.push({
+        name:name,
+        url:url
+    });
+
+    localStorage.setItem(
+        "myBrowserDownloads",
+        JSON.stringify(downloads)
+    );
+
+    showDownloads();
+
+}
+
+
+function showDownloadsPanel(){
+
+    hidePanels();
+
+    document.getElementById(
+        "downloadsPanel"
+    ).style.display =
+        "block";
+
+    showDownloads();
+
+}
+
+
+function showDownloads(){
+
+    let downloads =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserDownloads"
+            )
+        ) || [];
+
+    let box =
+        document.getElementById(
+            "downloadsList"
+        );
+
+    box.innerHTML = "";
+
+    if(downloads.length === 0){
+
+        box.innerHTML =
+            "<p>No downloads added.</p>";
+
+        return;
+
+    }
+
+    downloads.forEach(
+        function(file,index){
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "list-item";
+
+            div.innerHTML =
+                "📄 " +
+                file.name +
+                '<br>' +
+                '<button class="blue" onclick="openSite(' +
+                JSON.stringify(file.url) +
+                ')">⬇ Download</button>' +
+                '<button class="red" onclick="deleteDownload(' +
+                index +
+                ')">Delete</button>';
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+function deleteDownload(index){
+
+    let downloads =
+        JSON.parse(
+            localStorage.getItem(
+                "myBrowserDownloads"
+            )
+        ) || [];
+
+    downloads.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+        "myBrowserDownloads",
+        JSON.stringify(downloads)
+    );
+
+    showDownloads();
+
+}
+
+
+function clearDownloads(){
+
+    if(confirm(
+        "Clear all downloads?"
+    )){
+
+        localStorage.removeItem(
+            "myBrowserDownloads"
+        );
+
+        showDownloads();
+
+    }
+
+}
+
+
+/* LOAD */
+
+window.onload =
+    function(){
+
+        loadDarkMode();
+
+        loadEngine();
+
+        showHistory();
+
+        showBookmarks();
+
+        showQuickSites();
+
+        showDownloads();
+
+        showTabName();
+
+    };
+
+</script>
+
+</body>
+</html>
