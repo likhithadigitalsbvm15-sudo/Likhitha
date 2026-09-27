@@ -7,977 +7,413 @@
 <title>Likhitha Browser</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f6f8;
-    color:#222;
+    font-family:Arial,sans-serif;
+    background:#f1f3f4;
+    color:#202124;
 }
 
 body.dark{
-    background:#121212;
-    color:#eee;
+    background:#202124;
+    color:white;
 }
-
-/* TOP BAR */
 
 .topbar{
     background:#202124;
     color:white;
-    padding:8px 12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+    padding:8px;
 }
-
-.logo{
-    font-size:20px;
-    font-weight:bold;
-    white-space:nowrap;
-}
-
-/* TABS */
 
 .tabs{
-    background:#202124;
     display:flex;
     align-items:center;
-    padding:0 10px;
-    gap:5px;
+    gap:8px;
 }
 
 .tab{
     background:#303134;
-    color:white;
     padding:10px 14px;
     border-radius:10px 10px 0 0;
-    min-width:150px;
     cursor:pointer;
 }
 
-.tab.active{
-    background:#f4f6f8;
-    color:#222;
-}
-
-body.dark .tab.active{
-    background:#181818;
+.tab button{
+    background:none;
+    border:0;
     color:white;
+    cursor:pointer;
+    font-size:16px;
 }
 
-.tab-close{
-    color:#e53935;
-    float:right;
-    margin-left:10px;
+.plus{
+    font-size:22px;
     cursor:pointer;
 }
 
-.new-tab{
-    background:#303134;
-    color:white;
-    border:none;
-    font-size:20px;
-    cursor:pointer;
-    padding:7px 12px;
-}
-
-/* NAVIGATION */
-
-.navigation{
-    background:#f4f6f8;
-    padding:8px 12px;
+.navbar{
     display:flex;
     align-items:center;
-    gap:6px;
-    border-bottom:1px solid #ddd;
+    gap:7px;
+    padding:10px;
+    background:#292a2d;
 }
 
-body.dark .navigation{
-    background:#181818;
-    border-color:#333;
-}
-
-.nav-btn{
-    border:none;
-    background:transparent;
-    font-size:20px;
-    padding:7px 10px;
-    cursor:pointer;
-    border-radius:50%;
-}
-
-.nav-btn:hover{
-    background:#ddd;
-}
-
-body.dark .nav-btn:hover{
-    background:#333;
-}
-
-/* ADDRESS BAR */
-
-.address-box{
-    flex:1;
-    display:flex;
-    align-items:center;
-    background:white;
-    border:1px solid #ccc;
-    border-radius:25px;
-    padding:3px 8px;
-}
-
-body.dark .address-box{
-    background:#252525;
-    border-color:#444;
-}
-
-.security-icon{
-    padding:0 7px;
-}
-
-.address-box input{
-    width:100%;
-    border:none;
-    outline:none;
-    background:transparent;
+.navbar button,
+.navbar select{
+    border:0;
+    border-radius:7px;
     padding:9px;
+    cursor:pointer;
+}
+
+.address{
+    flex:1;
+    padding:11px 15px;
+    border:0;
+    border-radius:22px;
+    outline:none;
     font-size:15px;
 }
 
-body.dark .address-box input{
-    color:white;
-}
-
-/* SEARCH ENGINE */
-
-.engine{
-    border:none;
-    background:transparent;
-    outline:none;
-}
-
-/* RIGHT BUTTONS */
-
-.right-buttons{
-    display:flex;
-    align-items:center;
-    gap:4px;
-}
-
-.top-button{
-    border:none;
-    background:transparent;
-    color:inherit;
-    font-size:17px;
+.security{
+    background:#e8eaed;
     padding:8px;
-    cursor:pointer;
-    border-radius:50%;
+    font-size:13px;
 }
 
-.top-button:hover{
-    background:#ddd;
+body.dark .security{
+    background:#303134;
 }
 
-body.dark .top-button:hover{
-    background:#333;
-}
-
-/* PRIVATE STATUS */
-
-.private-status{
+.status{
     text-align:center;
-    padding:7px;
-    font-size:14px;
-    font-weight:bold;
+    padding:6px;
+    font-size:13px;
 }
 
-/* HOME */
-
-.home{
+.container{
     max-width:1100px;
     margin:auto;
     padding:25px 15px;
 }
 
-/* WELCOME */
-
 .welcome{
     text-align:center;
-    padding:40px 20px;
+    padding:25px 10px;
 }
 
 .welcome h1{
-    font-size:38px;
-    margin-bottom:8px;
+    font-size:34px;
 }
 
-.welcome p{
-    color:#666;
-    font-size:18px;
-}
-
-body.dark .welcome p{
-    color:#aaa;
-}
-
-/* QUICK SEARCH */
-
-.quick-search{
-    max-width:650px;
-    margin:25px auto;
+.searchbox{
     display:flex;
-    background:white;
-    border:1px solid #ddd;
-    border-radius:30px;
-    padding:5px;
+    max-width:650px;
+    margin:20px auto;
 }
 
-body.dark .quick-search{
-    background:#252525;
-    border-color:#444;
-}
-
-.quick-search input{
+.searchbox input{
     flex:1;
-    border:none;
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:25px 0 0 25px;
     outline:none;
-    padding:13px 16px;
-    font-size:16px;
-    background:transparent;
 }
 
-body.dark .quick-search input{
+.searchbox button{
+    padding:15px 22px;
+    border:0;
+    border-radius:0 25px 25px 0;
+    background:#1a73e8;
     color:white;
-}
-
-.search-button{
-    border:none;
-    background:#1976d2;
-    color:white;
-    border-radius:25px;
-    padding:10px 20px;
     cursor:pointer;
 }
 
-/* SECTION */
-
-.section{
-    margin-top:30px;
-}
-
-.section h2{
+.section-title{
     text-align:center;
-    margin-bottom:15px;
+    margin:30px 0 15px;
 }
 
-/* WEBSITE CARDS */
-
-.quick-sites{
+.cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-    gap:14px;
-}
-
-.site-card{
-    background:white;
-    padding:20px 10px;
-    border-radius:14px;
-    text-align:center;
-    cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-    transition:.2s;
-}
-
-.site-card:hover{
-    transform:translateY(-3px);
-}
-
-body.dark .site-card{
-    background:#1e1e1e;
-}
-
-.site-icon{
-    font-size:32px;
-    margin-bottom:8px;
-}
-
-.site-card button{
-    margin-top:8px;
-}
-
-/* FEATURE CARDS */
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
     gap:15px;
 }
 
-.feature{
+.card{
     background:white;
     padding:20px;
     border-radius:14px;
     text-align:center;
-}
-
-body.dark .feature{
-    background:#1e1e1e;
-}
-
-.feature-icon{
-    font-size:32px;
-}
-
-/* PANELS */
-
-.panel{
-    display:none;
-    max-width:800px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:12px;
-}
-
-body.dark .panel{
-    background:#1e1e1e;
-}
-
-.panel h2{
-    margin-top:0;
-}
-
-.list-item{
-    padding:10px;
-    background:#f1f1f1;
-    margin:7px 0;
-    border-radius:7px;
-}
-
-body.dark .list-item{
-    background:#292929;
-}
-
-button{
-    border:none;
-    border-radius:7px;
-    padding:8px 12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
     cursor:pointer;
 }
 
-.blue{
-    background:#1976d2;
+body.dark .card{
+    background:#303134;
     color:white;
 }
 
-.red{
-    background:#e53935;
+.card .icon{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.card button{
+    margin-top:10px;
+    padding:7px 12px;
+    border:0;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.add-btn{
+    display:block;
+    margin:20px auto;
+    padding:11px 18px;
+    border:0;
+    border-radius:8px;
+    background:#1a73e8;
+    color:white;
+    cursor:pointer;
+}
+
+.panel{
+    display:none;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+body.dark .panel{
+    background:#303134;
     color:white;
 }
 
-.green{
-    background:#2e7d32;
-    color:white;
+.panel button{
+    margin:5px;
+    padding:8px 12px;
+    border:0;
+    border-radius:6px;
+    cursor:pointer;
 }
-
-/* SECURITY */
-
-.security{
-    text-align:center;
-    padding:5px;
-    font-size:13px;
-    background:#e8f5e9;
-    color:#2e7d32;
-}
-
-body.dark .security{
-    background:#172417;
-}
-
-/* FOOTER */
 
 footer{
     text-align:center;
-    color:#777;
-    padding:35px;
+    padding:25px;
+    margin-top:30px;
+    font-size:13px;
 }
-
-@media(max-width:700px){
-
-    .logo{
-        display:none;
-    }
-
-    .right-buttons{
-        display:none;
-    }
-
-    .navigation{
-        padding:6px;
-    }
-
-    .welcome h1{
-        font-size:28px;
-    }
-
-    .tab{
-        min-width:120px;
-    }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- TOP -->
-
 <div class="topbar">
 
-    <div class="logo">
-        🌐 My Browser
+    <div class="tabs">
+        <div class="tab">
+            <span id="tabName">🌐 Likhitha Browser</span>
+            <button onclick="closeTab(event)">×</button>
+        </div>
+
+        <div class="plus" onclick="newTab()">＋</div>
     </div>
 
-    <div style="flex:1"></div>
+    <div class="navbar">
 
-    <button class="top-button" onclick="togglePrivateMode()">
-        🔐
-    </button>
-
-    <button class="top-button" onclick="toggleDarkMode()">
-        🌙
-    </button>
-
-    <button class="top-button" onclick="toggleSettings()">
-        ⚙️
-    </button>
-
-</div>
-
-
-<!-- TABS -->
-
-<div class="tabs">
-
-    <div class="tab active" onclick="renameTab()">
-
-        <span id="tabName">
-            🌐 Likhitha Browser
-        </span>
-
-        <span
-            class="tab-close"
-            onclick="closeTab(event)"
-        >
-            ×
-        </span>
-
-    </div>
-
-    <button
-        class="new-tab"
-        onclick="newTab()"
-    >
-        +
-    </button>
-
-</div>
-
-
-<!-- NAVIGATION -->
-
-<div class="navigation">
-
-    <button
-        class="nav-btn"
-        onclick="history.back()"
-        title="Back"
-    >
-        ⬅
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="history.forward()"
-        title="Forward"
-    >
-        ➡
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="location.reload()"
-        title="Refresh"
-    >
-        🔄
-    </button>
-
-    <button
-        class="nav-btn"
-        onclick="goHome()"
-        title="Home"
-    >
-        🏠
-    </button>
-
-
-    <!-- ADDRESS BAR -->
-
-    <div class="address-box">
-
-        <span
-            class="security-icon"
-            id="securityIcon"
-        >
-            🔎
-        </span>
+        <button onclick="goBack()">⬅</button>
+        <button onclick="goForward()">➡</button>
+        <button onclick="refreshPage()">🔄</button>
+        <button onclick="goHome()">🏠</button>
 
         <input
-            type="text"
+            class="address"
             id="addressInput"
-            placeholder="Search or enter website address"
+            placeholder="🔎 Search or enter website"
         >
 
-        <select
-            class="engine"
-            id="engine"
-        >
-
+        <select id="engine" onchange="changeEngine()">
             <option value="google">Google</option>
             <option value="bing">Bing</option>
             <option value="duckduckgo">DuckDuckGo</option>
-
         </select>
 
+        <button onclick="bookmarkPage()">⭐</button>
+
     </div>
-
-
-    <button
-        class="nav-btn"
-        onclick="bookmarkPage()"
-        title="Bookmark"
-    >
-        ⭐
-    </button>
-
 </div>
 
-
-<!-- SECURITY -->
-
-<div
-    class="security"
-    id="securityStatus"
->
-    🔎 Ready to search
+<div class="security" id="securityStatus">
+    🌐 Ready to search
 </div>
 
+<div class="status" id="privateStatus"></div>
 
-<!-- PRIVATE -->
-
-<div
-    class="private-status"
-    id="privateStatus"
->
-</div>
-
-
-<!-- HOME -->
-
-<div class="home">
+<div class="container">
 
     <div class="welcome">
 
-        <h1>
-            🌐 Welcome to My Browser
-        </h1>
+        <h1>🌐 Welcome to Likhitha Browser</h1>
 
-        <p>
-            Fast • Simple • Personal
-        </p>
+        <p>Fast • Simple • Personal</p>
 
-        <div
-            class="quick-search"
-        >
+        <div class="searchbox">
 
             <input
-                type="text"
                 id="homeSearch"
-                placeholder="Search the web..."
+                placeholder="🔎 Search the web"
             >
 
-            <button
-                class="search-button"
-                onclick="homeSearch()"
-            >
-                🔎 Search
+            <button onclick="homeSearchGo()">
+                Search
             </button>
 
         </div>
 
     </div>
 
+    <h2 class="section-title">🌐 Quick Websites</h2>
 
-    <!-- QUICK WEBSITES -->
+    <div class="cards">
 
-    <div class="section">
-
-        <h2>
-            🌐 Quick Websites
-        </h2>
-
-        <div class="quick-sites">
-
-            <div
-                class="site-card"
-                onclick="openSite('https://www.google.com')"
-            >
-
-                <div class="site-icon">
-                    🔎
-                </div>
-
-                <b>Google</b>
-
-            </div>
-
-
-            <div
-                class="site-card"
-                onclick="openSite('https://www.youtube.com')"
-            >
-
-                <div class="site-icon">
-                    ▶️
-                </div>
-
-                <b>YouTube</b>
-
-            </div>
-
-
-            <div
-                class="site-card"
-                onclick="openSite('https://www.facebook.com')"
-            >
-
-                <div class="site-icon">
-                    📘
-                </div>
-
-                <b>Facebook</b>
-
-            </div>
-
-
-            <div
-                class="site-card"
-                onclick="openSite('https://www.instagram.com')"
-            >
-
-                <div class="site-icon">
-                    📸
-                </div>
-
-                <b>Instagram</b>
-
-            </div>
-
-
-            <div
-                class="site-card"
-                onclick="openSite('https://web.whatsapp.com')"
-            >
-
-                <div class="site-icon">
-                    💬
-                </div>
-
-                <b>WhatsApp</b>
-
-            </div>
-
-
-            <div
-                class="site-card"
-                onclick="openSite('https://news.google.com')"
-            >
-
-                <div class="site-icon">
-                    📰
-                </div>
-
-                <b>News</b>
-
-            </div>
-
+        <div class="card" onclick="openSite('https://www.google.com')">
+            <div class="icon">🔎</div>
+            <b>Google</b>
         </div>
 
+        <div class="card" onclick="openSite('https://www.youtube.com')">
+            <div class="icon">▶️</div>
+            <b>YouTube</b>
+        </div>
 
-        <br>
+        <div class="card" onclick="openSite('https://www.facebook.com')">
+            <div class="icon">📘</div>
+            <b>Facebook</b>
+        </div>
 
-        <button
-            class="blue"
-            onclick="addQuickSite()"
-        >
-            ➕ Add Website
-        </button>
+        <div class="card" onclick="openSite('https://www.instagram.com')">
+            <div class="icon">📸</div>
+            <b>Instagram</b>
+        </div>
 
+        <div class="card" onclick="openSite('https://web.whatsapp.com')">
+            <div class="icon">💬</div>
+            <b>WhatsApp</b>
+        </div>
 
-        <div
-            id="customSites"
-            class="quick-sites"
-        ></div>
-
-    </div>
-
-
-    <!-- BROWSER FEATURES -->
-
-    <div class="section">
-
-        <h2>
-            ✨ Browser Features
-        </h2>
-
-        <div class="features">
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    ⭐
-                </div>
-
-                <b>Bookmarks</b>
-
-                <p>
-                    Save your favorite websites.
-                </p>
-
-                <button
-                    class="blue"
-                    onclick="showBookmarksPanel()"
-                >
-                    Open
-                </button>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🕘
-                </div>
-
-                <b>History</b>
-
-                <p>
-                    View recent searches.
-                </p>
-
-                <button
-                    class="blue"
-                    onclick="showHistoryPanel()"
-                >
-                    Open
-                </button>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    📥
-                </div>
-
-                <b>Downloads</b>
-
-                <p>
-                    Manage saved downloads.
-                </p>
-
-                <button
-                    class="blue"
-                    onclick="showDownloadsPanel()"
-                >
-                    Open
-                </button>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🔐
-                </div>
-
-                <b>Private Mode</b>
-
-                <p>
-                    Don't save new searches.
-                </p>
-
-                <button
-                    class="blue"
-                    onclick="togglePrivateMode()"
-                >
-                    Enable
-                </button>
-
-            </div>
-
+        <div class="card" onclick="openSite('https://news.google.com')">
+            <div class="icon">📰</div>
+            <b>News</b>
         </div>
 
     </div>
 
+    <button class="add-btn" onclick="addQuickSite()">
+        ➕ Add Website
+    </button>
 
-    <!-- HISTORY PANEL -->
+    <div id="customSites" class="cards"></div>
 
-    <div
-        class="panel"
-        id="historyPanel"
-    >
+    <h2 class="section-title">✨ Browser Features</h2>
 
-        <h2>
-            🕘 Search History
-        </h2>
+    <div class="cards">
 
+        <div class="card" onclick="showBookmarksPanel()">
+            <div class="icon">⭐</div>
+            <b>Bookmarks</b>
+            <p>Save your favorite websites.</p>
+            <button>Open</button>
+        </div>
+
+        <div class="card" onclick="showHistoryPanel()">
+            <div class="icon">🕘</div>
+            <b>History</b>
+            <p>View recent searches.</p>
+            <button>Open</button>
+        </div>
+
+        <div class="card" onclick="showDownloadsPanel()">
+            <div class="icon">📥</div>
+            <b>Downloads</b>
+            <p>Manage saved downloads.</p>
+            <button>Open</button>
+        </div>
+
+        <div class="card" onclick="togglePrivateMode()">
+            <div class="icon">🔐</div>
+            <b>Private Mode</b>
+            <p>Don't save new searches.</p>
+            <button>Enable</button>
+        </div>
+
+        <div class="card" onclick="toggleSettings()">
+            <div class="icon">⚙️</div>
+            <b>Settings</b>
+            <p>Browser settings.</p>
+            <button>Open</button>
+        </div>
+
+    </div>
+
+    <div id="historyPanel" class="panel">
+        <h2>🕘 Search History</h2>
         <div id="historyList"></div>
-
-        <button
-            class="red"
-            onclick="clearHistory()"
-        >
-            🗑 Clear History
-        </button>
-
+        <button onclick="clearHistory()">🗑 Clear History</button>
+        <button onclick="hidePanels()">❌ Close</button>
     </div>
 
-
-    <!-- BOOKMARK PANEL -->
-
-    <div
-        class="panel"
-        id="bookmarkPanel"
-    >
-
-        <h2>
-            ⭐ Bookmarks
-        </h2>
-
+    <div id="bookmarkPanel" class="panel">
+        <h2>⭐ Bookmarks</h2>
         <div id="bookmarkList"></div>
-
-        <button
-            class="red"
-            onclick="clearBookmarks()"
-        >
-            🗑 Clear All Bookmarks
-        </button>
-
+        <button onclick="clearBookmarks()">🗑 Clear Bookmarks</button>
+        <button onclick="hidePanels()">❌ Close</button>
     </div>
 
-
-    <!-- DOWNLOAD PANEL -->
-
-    <div
-        class="panel"
-        id="downloadsPanel"
-    >
-
-        <h2>
-            📥 Downloads
-        </h2>
-
-        <button
-            class="blue"
-            onclick="addDownload()"
-        >
-            ➕ Add Download
-        </button>
-
+    <div id="downloadsPanel" class="panel">
+        <h2>📥 Downloads Manager</h2>
         <div id="downloadsList"></div>
-
-        <button
-            class="red"
-            onclick="clearDownloads()"
-        >
-            🗑 Clear Downloads
-        </button>
-
+        <button onclick="addDownload()">➕ Add Download</button>
+        <button onclick="clearDownloads()">🗑 Clear Downloads</button>
+        <button onclick="hidePanels()">❌ Close</button>
     </div>
 
+    <div id="settingsPanel" class="panel">
 
-    <!-- SETTINGS -->
+        <h2>⚙️ Browser Settings</h2>
 
-    <div
-        class="panel"
-        id="settingsPanel"
-    >
+        <p><b>Default Search Engine</b></p>
 
-        <h2>
-            ⚙️ Browser Settings
-        </h2>
-
-        <p>
-            Default Search Engine
-        </p>
-
-        <select
-            id="settingsEngine"
-            onchange="changeEngine()"
-        >
-
-            <option value="google">
-                Google
-            </option>
-
-            <option value="bing">
-                Bing
-            </option>
-
-            <option value="duckduckgo">
-                DuckDuckGo
-            </option>
-
+        <select id="settingsEngine" onchange="changeEngineFromSettings()">
+            <option value="google">Google</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
         </select>
 
         <br><br>
 
-        <button
-            class="blue"
-            onclick="toggleDarkMode()"
-        >
+        <button onclick="toggleDarkMode()">
             🌙 Dark / Light Mode
         </button>
 
-        <button
-            class="red"
-            onclick="clearHistory()"
-        >
+        <button onclick="clearHistory()">
             🗑 Clear History
         </button>
 
-        <button
-            class="red"
-            onclick="clearBookmarks()"
-        >
+        <button onclick="clearBookmarks()">
             🗑 Clear Bookmarks
         </button>
 
         <br><br>
 
-        <button
-            onclick="toggleSettings()"
-        >
+        <button onclick="hidePanels()">
             ❌ Close Settings
         </button>
 
@@ -985,154 +421,115 @@ footer{
 
 </div>
 
-
 <footer>
-
-    🌐 My Browser © 2026
-
+    🌐 Likhitha Browser © 2026
 </footer>
 
-
 <script>
+
+let privateMode = false;
+
 
 /* SEARCH */
 
 function go(){
 
     let input =
-        document.getElementById(
-            "addressInput"
-        ).value.trim();
+        document.getElementById("addressInput").value.trim();
 
-    if(!input){
-        return;
-    }
+    if(!input) return;
+
+    saveHistory(input);
 
     updateSecurity(input);
-
-    let url = "";
 
     if(
         input.startsWith("http://") ||
         input.startsWith("https://")
     ){
 
-        url = input;
+        window.open(input,"_blank");
 
     }
 
     else if(
-        input.includes(".com") ||
-        input.includes(".in") ||
-        input.includes(".org") ||
-        input.includes(".net")
+        input.includes(".") &&
+        !input.includes(" ")
     ){
 
-        url = "https://" + input;
+        window.open(
+            "https://" + input,
+            "_blank"
+        );
 
     }
 
     else{
 
         let engine =
-            document.getElementById(
-                "engine"
-            ).value;
+            localStorage.getItem("myBrowserEngine") ||
+            "google";
+
+        let url = "";
 
         if(engine === "google"){
-
             url =
-                "https://www.google.com/search?q="
-                + encodeURIComponent(input);
-
+            "https://www.google.com/search?q=" +
+            encodeURIComponent(input);
         }
 
-        if(engine === "bing"){
-
+        else if(engine === "bing"){
             url =
-                "https://www.bing.com/search?q="
-                + encodeURIComponent(input);
-
+            "https://www.bing.com/search?q=" +
+            encodeURIComponent(input);
         }
 
-        if(engine === "duckduckgo"){
-
+        else{
             url =
-                "https://duckduckgo.com/?q="
-                + encodeURIComponent(input);
-
+            "https://duckduckgo.com/?q=" +
+            encodeURIComponent(input);
         }
 
-        if(!privateMode){
-
-            saveHistory(input);
-
-        }
-
+        window.open(url,"_blank");
     }
-
-    window.open(
-        url,
-        "_blank"
-    );
-
 }
 
 
 /* HOME SEARCH */
 
-function homeSearch(){
+function homeSearchGo(){
 
-    let value =
-        document.getElementById(
-            "homeSearch"
-        ).value.trim();
+    let input =
+        document.getElementById("homeSearch").value.trim();
 
-    if(!value){
-        return;
-    }
+    if(!input) return;
 
-    document.getElementById(
-        "addressInput"
-    ).value = value;
+    document.getElementById("addressInput").value =
+        input;
 
     go();
-
 }
 
 
 /* ENTER KEY */
 
-document.getElementById(
-    "addressInput"
-).addEventListener(
-    "keydown",
-    function(event){
+document.getElementById("addressInput")
+.addEventListener("keydown",function(e){
 
-        if(event.key === "Enter"){
-
-            go();
-
-        }
-
+    if(e.key === "Enter"){
+        go();
     }
-);
 
+});
 
-document.getElementById(
-    "homeSearch"
-).addEventListener(
-    "keydown",
-    function(event){
+document.getElementById("homeSearch")
+.addEventListener("keydown",function(e){
 
-        if(event.key === "Enter"){
-
-            homeSearch();
-
-        }
-
+    if(e.key === "Enter"){
+        homeSearchGo();
     }
-);
+
+});
 
 
 /* SECURITY */
@@ -1140,69 +537,44 @@ document.getElementById(
 function updateSecurity(input){
 
     let status =
-        document.getElementById(
-            "securityStatus"
-        );
-
-    let icon =
-        document.getElementById(
-            "securityIcon"
-        );
+        document.getElementById("securityStatus");
 
     if(input.startsWith("https://")){
 
-        icon.innerText = "🔒";
-
-        status.innerText =
-            "🔒 Secure Connection — HTTPS";
+        status.innerHTML =
+        "🔒 Secure Connection — HTTPS";
 
     }
 
     else if(input.startsWith("http://")){
 
-        icon.innerText = "⚠️";
-
-        status.innerText =
-            "⚠️ Not Secure — HTTP";
+        status.innerHTML =
+        "⚠️ Not Secure — HTTP";
 
     }
 
-    else if(
-        input.includes(".com") ||
-        input.includes(".in") ||
-        input.includes(".org") ||
-        input.includes(".net")
-    ){
+    else if(input.includes(".")){
 
-        icon.innerText = "🔒";
-
-        status.innerText =
-            "🌐 Website — HTTPS will be used";
+        status.innerHTML =
+        "🌐 Website — HTTPS will be used";
 
     }
 
     else{
 
-        icon.innerText = "🔎";
-
-        status.innerText =
-            "🔎 Search — Selected search engine";
+        status.innerHTML =
+        "🔎 Search";
 
     }
 
 }
 
 
-/* OPEN WEBSITE */
+/* QUICK WEBSITE */
 
 function openSite(url){
 
-    updateSecurity(url);
-
-    window.open(
-        url,
-        "_blank"
-    );
+    window.open(url,"_blank");
 
 }
 
@@ -1211,14 +583,8 @@ function openSite(url){
 
 function goHome(){
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    document.getElementById(
-        "addressInput"
-    ).value = "";
+    window.location.href =
+        window.location.pathname;
 
 }
 
@@ -1228,60 +594,9 @@ function goHome(){
 function newTab(){
 
     window.open(
-        "index.html",
+        window.location.href,
         "_blank"
     );
-
-}
-
-
-/* RENAME TAB */
-
-function renameTab(){
-
-    let oldName =
-        localStorage.getItem(
-            "myBrowserTabName"
-        ) || "New Tab";
-
-    let name =
-        prompt(
-            "Tab name enter cheyyandi:",
-            oldName
-        );
-
-    if(name){
-
-        document.getElementById(
-            "tabName"
-        ).innerText = name;
-
-        localStorage.setItem(
-            "myBrowserTabName",
-            name
-        );
-
-    }
-
-}
-
-
-/* SHOW TAB */
-
-function showTabName(){
-
-    let name =
-        localStorage.getItem(
-            "myBrowserTabName"
-        );
-
-    if(name){
-
-        document.getElementById(
-            "tabName"
-        ).innerText = name;
-
-    }
 
 }
 
@@ -1296,17 +611,28 @@ function closeTab(event){
 
         window.close();
 
-        setTimeout(
-            function(){
-
-                window.location.href =
-                    "about:blank";
-
-            },
-            300
-        );
-
     }
+
+}
+
+
+/* BACK / FORWARD / REFRESH */
+
+function goBack(){
+
+    history.back();
+
+}
+
+function goForward(){
+
+    history.forward();
+
+}
+
+function refreshPage(){
+
+    location.reload();
 
 }
 
@@ -1315,36 +641,23 @@ function closeTab(event){
 
 function toggleDarkMode(){
 
-    document.body.classList.toggle(
-        "dark"
-    );
-
-    let dark =
-        document.body.classList.contains(
-            "dark"
-        );
+    document.body.classList.toggle("dark");
 
     localStorage.setItem(
         "myBrowserDarkMode",
-        dark
+        document.body.classList.contains("dark")
     );
 
 }
 
-
-/* LOAD DARK */
-
 function loadDarkMode(){
 
     if(
-        localStorage.getItem(
-            "myBrowserDarkMode"
-        ) === "true"
+        localStorage.getItem("myBrowserDarkMode")
+        === "true"
     ){
 
-        document.body.classList.add(
-            "dark"
-        );
+        document.body.classList.add("dark");
 
     }
 
@@ -1353,28 +666,25 @@ function loadDarkMode(){
 
 /* PRIVATE MODE */
 
-let privateMode = false;
-
 function togglePrivateMode(){
 
     privateMode =
         !privateMode;
 
     let status =
-        document.getElementById(
-            "privateStatus"
-        );
+        document.getElementById("privateStatus");
 
     if(privateMode){
 
-        status.innerText =
-            "🔐 Private Mode ON — New searches will NOT be saved to History.";
+        status.innerHTML =
+        "🔐 Private Mode ON — New searches will NOT be saved to History.";
 
     }
 
     else{
 
-        status.innerText = "";
+        status.innerHTML =
+        "🔓 Private Mode OFF";
 
     }
 
@@ -1385,102 +695,77 @@ function togglePrivateMode(){
 
 function saveHistory(text){
 
-    let history =
+    if(privateMode) return;
+
+    let historyData =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserHistory"
-            )
+            localStorage.getItem("myBrowserHistory")
         ) || [];
 
-    history =
-        history.filter(
+    historyData =
+        historyData.filter(
             item => item !== text
         );
 
-    history.unshift(text);
+    historyData.unshift(text);
 
-    history =
-        history.slice(
-            0,
-            10
-        );
+    historyData =
+        historyData.slice(0,10);
 
     localStorage.setItem(
         "myBrowserHistory",
-        JSON.stringify(history)
+        JSON.stringify(historyData)
     );
-
-    showHistory();
 
 }
 
 
 function showHistory(){
 
-    let history =
+    let list =
+        document.getElementById("historyList");
+
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserHistory"
-            )
+            localStorage.getItem("myBrowserHistory")
         ) || [];
 
-    let box =
-        document.getElementById(
-            "historyList"
-        );
+    if(data.length === 0){
 
-    box.innerHTML = "";
-
-    if(history.length === 0){
-
-        box.innerHTML =
-            "<p>No search history yet.</p>";
+        list.innerHTML =
+        "<p>No search history.</p>";
 
         return;
 
     }
 
-    history.forEach(
-        function(item,index){
-
-            let div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "list-item";
-
-            div.innerHTML =
-                "🔎 " +
-                item +
-                ' <button class="blue" onclick="searchHistory(' +
-                index +
-                ')">Open</button>';
-
-            box.appendChild(div);
-
-        }
-    );
+    list.innerHTML =
+        data.map(
+            (item,index) =>
+            `<p>
+                🔎 ${item}
+                <button onclick="searchHistory(${index})">
+                    Open
+                </button>
+            </p>`
+        ).join("");
 
 }
 
 
 function searchHistory(index){
 
-    let history =
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserHistory"
-            )
+            localStorage.getItem("myBrowserHistory")
         ) || [];
 
-    if(history[index]){
+    if(data[index]){
 
-        document.getElementById(
-            "addressInput"
-        ).value =
-            history[index];
+        document.getElementById("addressInput")
+        .value = data[index];
+
+        hidePanels();
 
         go();
 
@@ -1493,21 +778,17 @@ function showHistoryPanel(){
 
     hidePanels();
 
-    document.getElementById(
-        "historyPanel"
-    ).style.display =
-        "block";
-
     showHistory();
+
+    document.getElementById("historyPanel")
+    .style.display = "block";
 
 }
 
 
 function clearHistory(){
 
-    if(confirm(
-        "Clear all search history?"
-    )){
+    if(confirm("Clear all search history?")){
 
         localStorage.removeItem(
             "myBrowserHistory"
@@ -1525,15 +806,12 @@ function clearHistory(){
 function bookmarkPage(){
 
     let url =
-        document.getElementById(
-            "addressInput"
-        ).value.trim();
+        document.getElementById("addressInput")
+        .value.trim();
 
     if(!url){
 
-        alert(
-            "Enter a website address first!"
-        );
+        alert("Enter a website first.");
 
         return;
 
@@ -1541,83 +819,65 @@ function bookmarkPage(){
 
     let bookmarks =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserBookmarks"
-            )
+            localStorage.getItem("myBrowserBookmarks")
         ) || [];
 
-    if(
-        !bookmarks.includes(url)
-    ){
+    if(!bookmarks.includes(url)){
 
-        bookmarks.unshift(url);
+        bookmarks.push(url);
+
+        localStorage.setItem(
+            "myBrowserBookmarks",
+            JSON.stringify(bookmarks)
+        );
+
+        alert("⭐ Bookmark saved!");
+
+    }
+    else{
+
+        alert("Already bookmarked.");
 
     }
 
-    localStorage.setItem(
-        "myBrowserBookmarks",
-        JSON.stringify(bookmarks)
-    );
-
     showBookmarks();
-
-    alert(
-        "⭐ Bookmark saved!"
-    );
 
 }
 
 
 function showBookmarks(){
 
-    let bookmarks =
+    let list =
+        document.getElementById("bookmarkList");
+
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserBookmarks"
-            )
+            localStorage.getItem("myBrowserBookmarks")
         ) || [];
 
-    let box =
-        document.getElementById(
-            "bookmarkList"
-        );
+    if(data.length === 0){
 
-    box.innerHTML = "";
-
-    if(bookmarks.length === 0){
-
-        box.innerHTML =
-            "<p>No bookmarks yet.</p>";
+        list.innerHTML =
+        "<p>No bookmarks.</p>";
 
         return;
 
     }
 
-    bookmarks.forEach(
-        function(item,index){
+    list.innerHTML =
+        data.map(
+            (item,index) =>
+            `<p>
+                ⭐ ${item}
+                <button onclick="openSite('${item}')">
+                    Open
+                </button>
 
-            let div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "list-item";
-
-            div.innerHTML =
-                "⭐ " +
-                item +
-                ' <button class="blue" onclick="openSite(' +
-                JSON.stringify(item) +
-                ')">Open</button>' +
-                ' <button class="red" onclick="deleteBookmark(' +
-                index +
-                ')">Delete</button>';
-
-            box.appendChild(div);
-
-        }
-    );
+                <button onclick="deleteBookmark(${index})">
+                    Delete
+                </button>
+            </p>`
+        ).join("");
 
 }
 
@@ -1626,33 +886,26 @@ function showBookmarksPanel(){
 
     hidePanels();
 
-    document.getElementById(
-        "bookmarkPanel"
-    ).style.display =
-        "block";
-
     showBookmarks();
+
+    document.getElementById("bookmarkPanel")
+    .style.display = "block";
 
 }
 
 
 function deleteBookmark(index){
 
-    let bookmarks =
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserBookmarks"
-            )
+            localStorage.getItem("myBrowserBookmarks")
         ) || [];
 
-    bookmarks.splice(
-        index,
-        1
-    );
+    data.splice(index,1);
 
     localStorage.setItem(
         "myBrowserBookmarks",
-        JSON.stringify(bookmarks)
+        JSON.stringify(data)
     );
 
     showBookmarks();
@@ -1662,9 +915,7 @@ function deleteBookmark(index){
 
 function clearBookmarks(){
 
-    if(confirm(
-        "Clear all bookmarks?"
-    )){
+    if(confirm("Clear all bookmarks?")){
 
         localStorage.removeItem(
             "myBrowserBookmarks"
@@ -1682,19 +933,14 @@ function clearBookmarks(){
 function loadEngine(){
 
     let engine =
-        localStorage.getItem(
-            "myBrowserEngine"
-        ) || "google";
+        localStorage.getItem("myBrowserEngine")
+        || "google";
 
-    document.getElementById(
-        "engine"
-    ).value =
-        engine;
+    document.getElementById("engine")
+    .value = engine;
 
-    document.getElementById(
-        "settingsEngine"
-    ).value =
-        engine;
+    document.getElementById("settingsEngine")
+    .value = engine;
 
 }
 
@@ -1702,19 +948,32 @@ function loadEngine(){
 function changeEngine(){
 
     let engine =
-        document.getElementById(
-            "settingsEngine"
-        ).value;
-
-    document.getElementById(
-        "engine"
-    ).value =
-        engine;
+        document.getElementById("engine").value;
 
     localStorage.setItem(
         "myBrowserEngine",
         engine
     );
+
+    document.getElementById("settingsEngine")
+    .value = engine;
+
+}
+
+
+function changeEngineFromSettings(){
+
+    let engine =
+        document.getElementById("settingsEngine")
+        .value;
+
+    localStorage.setItem(
+        "myBrowserEngine",
+        engine
+    );
+
+    document.getElementById("engine")
+    .value = engine;
 
 }
 
@@ -1724,15 +983,14 @@ function changeEngine(){
 function toggleSettings(){
 
     let panel =
-        document.getElementById(
-            "settingsPanel"
-        );
+        document.getElementById("settingsPanel");
 
     if(panel.style.display === "block"){
 
         panel.style.display = "none";
 
-    } else {
+    }
+    else{
 
         hidePanels();
 
@@ -1742,79 +1000,57 @@ function toggleSettings(){
 
 }
 
-/* PANELS */
+
+/* HIDE PANELS */
 
 function hidePanels(){
 
-    let panels =
-        document.querySelectorAll(
-            ".panel"
-        );
+    document.getElementById("historyPanel")
+    .style.display = "none";
 
-    panels.forEach(
-        function(panel){
+    document.getElementById("bookmarkPanel")
+    .style.display = "none";
 
-            panel.style.display =
-                "none";
+    document.getElementById("downloadsPanel")
+    .style.display = "none";
 
-        }
-    );
+    document.getElementById("settingsPanel")
+    .style.display = "none";
 
 }
 
 
-/* CUSTOM WEBSITES */
+/* ADD WEBSITE */
 
 function addQuickSite(){
 
     let name =
-        prompt(
-            "Website name:"
-        );
+        prompt("Website name enter cheyyandi:");
 
-    if(!name){
-        return;
-    }
+    if(!name) return;
 
     let icon =
-        prompt(
-            "Website icon emoji:",
-            "🌐"
-        );
+        prompt("Website icon emoji enter cheyyandi:");
 
-    if(!icon){
-        icon = "🌐";
-    }
+    if(!icon) icon = "🌐";
 
     let url =
-        prompt(
-            "Website URL:"
-        );
+        prompt("Website URL enter cheyyandi:");
 
-    if(!url){
-        return;
-    }
+    if(!url) return;
 
     if(
-        !url.startsWith(
-            "http://"
-        ) &&
-        !url.startsWith(
-            "https://"
-        )
+        !url.startsWith("http://") &&
+        !url.startsWith("https://")
     ){
 
-        url =
-            "https://" +
-            url;
+        url = "https://" + url;
 
     }
 
     let sites =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserQuickSites"
-            )
+            localStorage.getItem("myBrowserQuickSites")
         ) || [];
 
     sites.push({
@@ -1835,49 +1071,32 @@ function addQuickSite(){
 
 function showQuickSites(){
 
+    let container =
+        document.getElementById("customSites");
+
     let sites =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserQuickSites"
-            )
+            localStorage.getItem("myBrowserQuickSites")
         ) || [];
 
-    let box =
-        document.getElementById(
-            "customSites"
-        );
+    container.innerHTML =
+        sites.map(
+            (site,index) =>
+            `<div class="card">
+                <div class="icon">${site.icon}</div>
+                <b>${site.name}</b>
 
-    box.innerHTML = "";
+                <br>
 
-    sites.forEach(
-        function(site,index){
+                <button onclick="openSite('${site.url}')">
+                    Open
+                </button>
 
-            let div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "site-card";
-
-            div.innerHTML =
-                '<div class="site-icon">' +
-                site.icon +
-                '</div>' +
-                '<b>' +
-                site.name +
-                '</b><br>' +
-                '<button class="blue" onclick="openSite(' +
-                JSON.stringify(site.url) +
-                ')">Open</button>' +
-                '<button class="red" onclick="deleteQuickSite(' +
-                index +
-                ')">Delete</button>';
-
-            box.appendChild(div);
-
-        }
-    );
+                <button onclick="deleteQuickSite(${index})">
+                    Delete
+                </button>
+            </div>`
+        ).join("");
 
 }
 
@@ -1886,15 +1105,10 @@ function deleteQuickSite(index){
 
     let sites =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserQuickSites"
-            )
+            localStorage.getItem("myBrowserQuickSites")
         ) || [];
 
-    sites.splice(
-        index,
-        1
-    );
+    sites.splice(index,1);
 
     localStorage.setItem(
         "myBrowserQuickSites",
@@ -1911,28 +1125,18 @@ function deleteQuickSite(index){
 function addDownload(){
 
     let name =
-        prompt(
-            "File name:"
-        );
+        prompt("File name enter cheyyandi:");
 
-    if(!name){
-        return;
-    }
+    if(!name) return;
 
     let url =
-        prompt(
-            "Download URL:"
-        );
+        prompt("Download URL enter cheyyandi:");
 
-    if(!url){
-        return;
-    }
+    if(!url) return;
 
     let downloads =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserDownloads"
-            )
+            localStorage.getItem("myBrowserDownloads")
         ) || [];
 
     downloads.push({
@@ -1950,92 +1154,68 @@ function addDownload(){
 }
 
 
-function showDownloadsPanel(){
-
-    hidePanels();
-
-    document.getElementById(
-        "downloadsPanel"
-    ).style.display =
-        "block";
-
-    showDownloads();
-
-}
-
-
 function showDownloads(){
 
-    let downloads =
+    let list =
+        document.getElementById("downloadsList");
+
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserDownloads"
-            )
+            localStorage.getItem("myBrowserDownloads")
         ) || [];
 
-    let box =
-        document.getElementById(
-            "downloadsList"
-        );
+    if(data.length === 0){
 
-    box.innerHTML = "";
-
-    if(downloads.length === 0){
-
-        box.innerHTML =
-            "<p>No downloads added.</p>";
+        list.innerHTML =
+        "<p>No downloads.</p>";
 
         return;
 
     }
 
-    downloads.forEach(
-        function(file,index){
+    list.innerHTML =
+        data.map(
+            (item,index) =>
+            `<p>
+                📄 ${item.name}
 
-            let div =
-                document.createElement(
-                    "div"
-                );
+                <button onclick="openSite('${item.url}')">
+                    ⬇ Download
+                </button>
 
-            div.className =
-                "list-item";
+                <button onclick="deleteDownload(${index})">
+                    Delete
+                </button>
+            </p>`
+        ).join("");
 
-            div.innerHTML =
-                "📄 " +
-                file.name +
-                '<br>' +
-                '<button class="blue" onclick="openSite(' +
-                JSON.stringify(file.url) +
-                ')">⬇ Download</button>' +
-                '<button class="red" onclick="deleteDownload(' +
-                index +
-                ')">Delete</button>';
+}
 
-            box.appendChild(div);
 
-        }
-    );
+function showDownloadsPanel(){
+
+    hidePanels();
+
+    showDownloads();
+
+    document.getElementById("downloadsPanel")
+    .style.display = "block";
 
 }
 
 
 function deleteDownload(index){
 
-    let downloads =
+    let data =
         JSON.parse(
-            localStorage.getItem(
-                "myBrowserDownloads"
-            )
+            localStorage.getItem("myBrowserDownloads")
         ) || [];
 
-    downloads.splice(
-        index,
-        1
-    );
+    data.splice(index,1);
 
     localStorage.setItem(
         "myBrowserDownloads",
-        JSON.stringify(downloads)
+        JSON.stringify(data)
     );
 
     showDownloads();
@@ -2045,9 +1225,7 @@ function deleteDownload(index){
 
 function clearDownloads(){
 
-    if(confirm(
-        "Clear all downloads?"
-    )){
+    if(confirm("Clear all downloads?")){
 
         localStorage.removeItem(
             "myBrowserDownloads"
@@ -2062,24 +1240,21 @@ function clearDownloads(){
 
 /* LOAD */
 
-window.onload =
-    function(){
+window.onload = function(){
 
-        loadDarkMode();
+    loadDarkMode();
 
-        loadEngine();
+    loadEngine();
 
-        showHistory();
+    showHistory();
 
-        showBookmarks();
+    showBookmarks();
 
-        showQuickSites();
+    showQuickSites();
 
-        showDownloads();
+    showDownloads();
 
-        showTabName();
-
-    };
+};
 
 </script>
 
